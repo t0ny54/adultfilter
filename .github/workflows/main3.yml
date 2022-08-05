@@ -9,6 +9,7 @@ on:
     - '*.conf'
     - '*.txt'
     - '*.sh'
+    - '*.py'
     - 'README.md'
   schedule:
     - cron: '0 10 * * *'
@@ -26,7 +27,7 @@ jobs:
       - name: Build blocklist
         uses: actions/checkout@v3
       - run: |
-          sudo python3 generate-domains-blocklist.py > blocklist.txt
+          sudo python3 generate-domains-blocklist.py --allowlist domains-allowlist.txt > blocklist.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
